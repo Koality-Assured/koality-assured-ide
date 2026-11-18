@@ -1,0 +1,125 @@
+diff --git a/resources/linux/code-url-handler.desktop b/resources/linux/code-url-handler.desktop
+index 7106e0e0..774f8d2a 100644
+--- a/resources/linux/code-url-handler.desktop
++++ b/resources/linux/code-url-handler.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Name=@@NAME_LONG@@ - URL Handler
+-Comment=Code Editing. Redefined.
++Comment=Telemetry-free, Open VSX native, AI-first IDE with Harness ACP integration.
+ GenericName=Text Editor
+ Exec=@@EXEC@@ --open-url %U
+ Icon=@@ICON@@
+@@ -9,4 +9,4 @@ NoDisplay=true
+ StartupNotify=true
+ Categories=Utility;TextEditor;Development;IDE;
+ MimeType=x-scheme-handler/@@URLPROTOCOL@@;
+-Keywords=vscode;
++Keywords=koality-ide;ide;editor;
+diff --git a/resources/linux/code.appdata.xml b/resources/linux/code.appdata.xml
+index ab9df8c2..978ee8b0 100644
+--- a/resources/linux/code.appdata.xml
++++ b/resources/linux/code.appdata.xml
+@@ -4,15 +4,9 @@
+ 	<metadata_license>@@LICENSE@@</metadata_license>
+ 	<project_license>@@LICENSE@@</project_license>
+ 	<name>@@NAME_LONG@@</name>
+-	<url type="homepage">https://code.visualstudio.com</url>
+-	<summary>Visual Studio Code. Code editing. Redefined.</summary>
++	<url type="homepage">https://github.com/Koality-Assured/koality-assured-ide</url>
++	<summary>Koality Assured IDE. Telemetry-free, Open VSX native, AI-first IDE.</summary>
+ 	<description>
+-		<p>Visual Studio Code is a new choice of tool that combines the simplicity of a code editor with what developers need for the core edit-build-debug cycle. See https://code.visualstudio.com/docs/setup/linux for installation instructions and FAQ.</p>
++		<p>Koality Assured IDE is a telemetry-free, Open VSX native Integrated Development Environment with native Koality Assured Harness ACP integration. See https://github.com/Koality-Assured/koality-assured-ide for build and setup documentation.</p>
+ 	</description>
+-	<screenshots>
+-		<screenshot type="default">
+-			<image>https://code.visualstudio.com/home/home-screenshot-linux-lg.png</image>
+-			<caption>Editing TypeScript and searching for extensions</caption>
+-		</screenshot>
+-	</screenshots>
+ </component>
+diff --git a/resources/linux/code.desktop b/resources/linux/code.desktop
+index 50da5aed..66db214f 100755
+--- a/resources/linux/code.desktop
++++ b/resources/linux/code.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Name=@@NAME_LONG@@
+-Comment=Code Editing. Redefined.
++Comment=Telemetry-free, Open VSX native, AI-first IDE with Harness ACP integration.
+ GenericName=Text Editor
+ Exec=@@EXEC@@ %F
+ Icon=@@ICON@@
+@@ -10,7 +10,7 @@ StartupWMClass=@@DESKTOP_NAME@@
+ Categories=TextEditor;Development;IDE;
+ MimeType=application/x-@@NAME@@-workspace;
+ Actions=new-empty-window;
+-Keywords=vscode;
++Keywords=koality-ide;ide;editor;
+ 
+ [Desktop Action new-empty-window]
+ Name=New Empty Window
+diff --git a/resources/win32/VisualElementsManifest.xml b/resources/win32/VisualElementsManifest.xml
+index 5ad1283c..9962783d 100644
+--- a/resources/win32/VisualElementsManifest.xml
++++ b/resources/win32/VisualElementsManifest.xml
+@@ -5,5 +5,5 @@
+ 				Square150x150Logo="@@VERSIONFOLDER@@resources\app\resources\win32\code_150x150.png"
+ 				Square70x70Logo="@@VERSIONFOLDER@@resources\app\resources\win32\code_70x70.png"
+ 				ForegroundText="light"
+-				ShortDisplayName="Code - OSS" />
++				ShortDisplayName="Koality Assured IDE" />
+ </Application>
+diff --git a/src/vs/code/browser/workbench/callback.html b/src/vs/code/browser/workbench/callback.html
+index 4f54d4d1..250e78ca 100644
+--- a/src/vs/code/browser/workbench/callback.html
++++ b/src/vs/code/browser/workbench/callback.html
+@@ -7,7 +7,7 @@
+ 		<!-- Disable pinch zooming -->
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+ 
+-		<title>Visual Studio Code</title>
++		<title>Koality Assured IDE</title>
+ 
+ 		<!-- Scripts -->
+ 		<script>
+@@ -112,7 +112,7 @@
+ 	</head>
+ 	<body>
+ 		<span class="branding">
+-			Visual Studio Code
++			Koality Assured IDE
+ 		</span>
+ 		<div class="message-container">
+ 			<div class="message">
+diff --git a/src/vs/platform/product/common/product.ts b/src/vs/platform/product/common/product.ts
+index fbc7e51c..9f10fa78 100644
+--- a/src/vs/platform/product/common/product.ts
++++ b/src/vs/platform/product/common/product.ts
+@@ -77,16 +77,16 @@ else {
+ 	// Running out of sources
+ 	if (Object.keys(product).length === 0) {
+ 		Object.assign(product, {
+-			version: '1.104.0-dev',
+-			nameShort: 'Code - OSS Dev',
+-			nameLong: 'Code - OSS Dev',
+-			applicationName: 'code-oss',
+-			dataFolderName: '.vscode-oss',
+-			urlProtocol: 'code-oss',
+-			reportIssueUrl: 'https://github.com/microsoft/vscode/issues/new',
++			version: '0.1.0-dev',
++			nameShort: 'Koality Assured IDE Dev',
++			nameLong: 'Koality Assured IDE Dev',
++			applicationName: 'koality-ide',
++			dataFolderName: '.koality-ide',
++			urlProtocol: 'koality-ide',
++			reportIssueUrl: 'https://github.com/Koality-Assured/koality-assured-ide/issues/new',
+ 			licenseName: 'MIT',
+-			licenseUrl: 'https://github.com/microsoft/vscode/blob/main/LICENSE.txt',
+-			serverLicenseUrl: 'https://github.com/microsoft/vscode/blob/main/LICENSE.txt',
++			licenseUrl: 'https://github.com/Koality-Assured/koality-assured-ide/blob/main/LICENSE',
++			serverLicenseUrl: 'https://github.com/Koality-Assured/koality-assured-ide/blob/main/LICENSE',
+ 			defaultChatAgent: {
+ 				extensionId: 'GitHub.copilot',
+ 				chatExtensionId: 'GitHub.copilot-chat',

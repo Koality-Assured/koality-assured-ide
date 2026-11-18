@@ -19,10 +19,13 @@
   "scripts": {
     "lint": "eslint .",
     "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules/**\" \"!.upstream/**\"",
+    "typecheck": "tsc --noEmit",
+    "prepare-source": "node build/scripts/prepare-source.ts",
     "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@types/node": "^26.6.6",
     "eslint": "^9.39.1",
     "markdownlint-cli2": "^0.18.1",
     "typescript": "^5.9.3",

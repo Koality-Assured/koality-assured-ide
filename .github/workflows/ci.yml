@@ -32,13 +32,8 @@ jobs:
       - name: Run Markdownlint
         run: npm run lint:md
 
-      - name: Run TypeScript check (when TS sources exist)
-        run: |
-          if find build tests -name '*.ts' 2>/dev/null | grep -q .; then
-            npx tsc --noEmit
-          else
-            echo "No TypeScript sources yet; skipping tsc --noEmit."
-          fi
+      - name: Run TypeScript check
+        run: npm run typecheck
 
       - name: Run unit tests
         run: npm test
