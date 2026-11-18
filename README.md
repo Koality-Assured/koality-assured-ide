@@ -38,11 +38,19 @@ Rather than maintaining a monolithic fork of `microsoft/vscode`, this repository
 
 ```text
 koality-assured-ide/
-├── .github/workflows/ci.yml         # ESLint, markdownlint, tests, Gitleaks, OWASP Noir
+├── .github/workflows/ci.yml         # ESLint, markdownlint, tsc, tests, Gitleaks, OWASP Noir
 ├── assets/
+│   ├── icons/                       # Replacement PNG/ICO app icons (no MS trademarks)
 │   ├── koality-assured-ide-banner.svg
 │   └── koality-assured-ide-logo.svg
+├── build/
+│   ├── scripts/prepare-source.ts    # Headless Code-OSS tag clone, patch, and overlay runner
+│   └── upstream.json                # Pinned upstream Code-OSS release tag (1.147.0)
+├── patches/
+│   ├── branding.patch               # Replaces fallback Code-OSS/VS Code branding
+│   └── disable-telemetry.patch      # Neutralizes ITelemetryService with NullTelemetryService
 ├── tests/
+│   ├── prepare-source.test.mjs      # Patch pipeline & config assertions
 │   └── product.test.mjs             # Product configuration & Open VSX assertions
 ├── .editorconfig
 ├── .markdownlint-cli2.jsonc
@@ -63,7 +71,11 @@ cd koality-assured-ide
 npm ci
 npm run lint
 npm run lint:md
+npm run typecheck
 npm test
+
+# Fetch pinned Code-OSS tag, apply patches, and overlay product.json + icons
+npm run prepare-source
 ```
 
 ## Security & Telemetry
