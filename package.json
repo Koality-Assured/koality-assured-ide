@@ -1,0 +1,31 @@
+{
+  "name": "koality-assured-ide",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telemetry-free, Open VSX native, AI-first IDE built on Code-OSS with native Koality Assured Harness ACP integration.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Koality-Assured/koality-assured-ide.git"
+  },
+  "homepage": "https://github.com/Koality-Assured/koality-assured-ide#readme",
+  "bugs": {
+    "url": "https://github.com/Koality-Assured/koality-assured-ide/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules/**\" \"!.upstream/**\"",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "markdownlint-cli2": "^0.18.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3"
+  }
+}

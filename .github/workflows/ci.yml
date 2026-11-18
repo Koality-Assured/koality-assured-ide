@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    name: Lint & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Markdownlint
+        run: npm run lint:md
+
+      - name: Run TypeScript check (when TS sources exist)
+        run: |
+          if find build tests -name '*.ts' 2>/dev/null | grep -q .; then
+            npx tsc --noEmit
+          else
+            echo "No TypeScript sources yet; skipping tsc --noEmit."
+          fi
+
+      - name: Run unit tests
+        run: npm test
+
+  security-scan:
+    name: Security Scans
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Secret Scan (Gitleaks)
+        run: |
+          VERSION=8.30.1
+          SHA256=551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+          curl -sSfL -o gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz"
+          echo "${SHA256}  gitleaks.tar.gz" | sha256sum -c -
+          tar -xzf gitleaks.tar.gz gitleaks
+          ./gitleaks detect --source . --redact --no-banner --verbose
+          rm -f gitleaks gitleaks.tar.gz
+
+      - name: Attack-Surface Scan (OWASP Noir)
+        run: |
+          VERSION=1.5.0
+          SHA256=4e176c92ee16f60fafd3be7ea6f605d82d3f27c39704a3f875cbed5bd050dc70
+          curl -sSfL -o noir "https://github.com/owasp-noir/noir/releases/download/v${VERSION}/noir-v${VERSION}-linux-x86_64"
+          echo "${SHA256}  noir" | sha256sum -c -
+          chmod +x noir
+          ./noir scan . -f json -o noir-report.json --no-log
+          cat noir-report.json
+          rm -f noir noir-report.json

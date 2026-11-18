@@ -1,0 +1,39 @@
+{
+  "nameShort": "Koality Assured IDE",
+  "nameLong": "Koality Assured IDE",
+  "applicationName": "koality-ide",
+  "dataFolderName": ".koality-ide",
+  "win32MutexName": "koalityassuredide",
+  "licenseName": "MIT",
+  "licenseUrl": "https://github.com/Koality-Assured/koality-assured-ide/blob/main/LICENSE",
+  "serverLicenseUrl": "https://github.com/Koality-Assured/koality-assured-ide/blob/main/LICENSE",
+  "serverGreeting": [],
+  "serverLicense": [],
+  "serverLicensePrompt": "",
+  "reportIssueUrl": "https://github.com/Koality-Assured/koality-assured-ide/issues/new",
+  "win32DirName": "Koality Assured IDE",
+  "win32NameVersion": "Koality Assured IDE",
+  "win32RegValueName": "KoalityAssuredIDE",
+  "win32x64AppId": "{{7D9A1B2E-4F3C-4A8D-9E6B-1C2D3E4F5A6B}",
+  "win32arm64AppId": "{{8E0B2C3F-5A4D-4B9E-AF7C-2D3E4F5A6B7C}",
+  "win32x64UserAppId": "{{9F1C3D4A-6B5E-4C0F-B08D-3E4F5A6B7C8D}",
+  "win32arm64UserAppId": "{{A02D4E5B-7C6F-4D1A-C19E-4F5A6B7C8D9E}",
+  "win32AppUserModelId": "KoalityAssured.IDE",
+  "win32ShellNameShort": "Koality &IDE",
+  "darwinBundleIdentifier": "dev.koalityassured.ide",
+  "linuxIconName": "koality-assured-ide",
+  "urlProtocol": "koality-ide",
+  "quality": "stable",
+  "enableTelemetry": false,
+  "extensionsGallery": {
+    "serviceUrl": "https://open-vsx.org/vscode/gallery",
+    "itemUrl": "https://open-vsx.org/vscode/item",
+    "resourceUrlTemplate": "https://open-vsx.org/vscode/unpkg/{publisher}/{name}/{version}/{path}",
+    "controlUrl": "",
+    "recommendationsUrl": ""
+  },
+  "linkProtectionTrustedDomains": [
+    "https://open-vsx.org",
+    "https://github.com/Koality-Assured"
+  ]
+}
